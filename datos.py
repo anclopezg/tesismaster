@@ -33,6 +33,7 @@ list_FRG2 = []
 posicion = 0
 # En ese json estan todos los resultados
 for i in range(len(json)):
+    print(json[i])
     fecha = json[i]["result"]["uplink_message"]['received_at']
     envio = json[i]["result"]["uplink_message"]["decoded_payload"]
     #envio = envio.append({"fecha": fecha})
