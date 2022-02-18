@@ -34,12 +34,15 @@ for i in range(len(json)):
     velU = envio['velU']
     velV = envio['velV']
     velW = envio['velW']
+    xang = envio["xang"]
+    xejz = envio["xejz"]
+    xmag = envio["xmag"]
     fecha = envio["fecha"].replace("T"," ").replace("Z"," ")
-    sql="insert into tabla_wind(velU,velV,velW, fecha) values (%s, %s, %s, %s)"
-    datos = (velU,velV,velW, fecha)
+    sql="insert into tabla_data_wind(velU,velV,velW,xang,xejz,xmag, fecha) values (%s,%s,%s,%s, %s, %s, %s)"
+    datos = (velU,velV,velW,xang,xejz,xmag,fecha)
     cursor1.execute(sql,datos)
     conexion1.commit()
-    print((velU,velV,velW, fecha))
+    print((velU,velV,velW, xang,xejz,xmag,fecha))
 conexion1.close()
     
 
