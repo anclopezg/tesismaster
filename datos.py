@@ -30,6 +30,7 @@ list_VG1 = []
 list_VG2 = []
 list_FRG1 = []
 list_FRG2 = []
+list_fecha = []
 posicion = 0
 # En ese json estan todos los resultados
 for i in range(len(json)):
@@ -50,6 +51,7 @@ for i in range(len(json)):
     list_FRG2.append(FR_G2_i)
     list_P_AT.append(P_AT_i)
     list_P_AT2.append(P_AT2_i)
+    list_fecha.append(fecha)
     
 
 #Leer las listas de Potencia para hallar Energia cada 10 minutos
@@ -71,7 +73,8 @@ for posicion in range(len(list_VG1)):
     FR_G2 = list_FRG2[posicion]
     P_AT = list_P_AT[posicion]
     P_AT2 = list_P_AT2[posicion]
-    fecha = envio["fecha"].replace("T"," ").replace("Z"," ")
+    fecha = list_fecha[posicion]
+    fecha = fecha.replace("T"," ").replace("Z"," ")
     sql="insert into tabla_dataf(V_G1, FR_G1, P_AT,EG1, V_G2, FR_G2, P_AT2, EG2, fecha) values (%s, %s, %s, %s, %s, %s,%s,%s, %s)"
     datos = (V_G1, FR_G1, P_AT,EG1, V_G2, FR_G2, P_AT2, EG2, fecha)
     posicion += 1
