@@ -155,6 +155,8 @@ for valor in df_salida["fecha"]:
 df_salida = df_salida.groupby(["fecha_final"]).mean()
 df_final = pd.merge(left = df_entrada,right = df_salida, left_on = "fecha_final", right_on = "fecha_final", how = "inner")
 df_final= df_final.rename_axis('fecha_final').reset_index()
+print(df_entrada)
+
 for index,row in df_final.iterrows():
     sql="insert into tabla_data_wind(velU,velV,velW,xang,xejz,xmag,V_G1, FR_G1, P_AT,EG1, V_G2, FR_G2, P_AT2, EG2, fecha) values (%s, %s, %s, %s, %s, %s,%s,%s, %s,%s,%s,%s,%s,%s,%s)"
     datos = (row.velU,row.velV,row.velW,row.xang,row.xejz,row.xmag,row.V_G1, row.FR_G1, row.P_AT,row.EG1, row.V_G2, row.FR_G2, row.P_AT2, row.EG2, row.fecha_final)
